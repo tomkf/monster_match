@@ -9,6 +9,7 @@ class MainActivity : AppCompatActivity() {
         Monster("Rumple", R.drawable.monster2_head, R.drawable.monster2_body,R.drawable.monster2_feet),
         Monster("Wodwo", R.drawable.monster3_head, R.drawable.monster3_body,R.drawable.monster3_feet)
     )
+
     val iterator = monsters.iterator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shuffleMonsters(){
-
-        var index: Int = 0
+         var index: Int = 0
         
          val topCheck = monsters.random().head
          monster_head_image_view.setImageResource(topCheck)
@@ -35,12 +35,13 @@ class MainActivity : AppCompatActivity() {
         monster_feet_image_view.setImageResource(bottomCheck)
 
         monsters.forEach{
-        if (topCheck==monsters[index].head && midCheck==monsters[index].body && bottomCheck==monsters[index].feet){
-            name_text.setText(monster[index].name)
+            var name = monsters[index].name
+        if (monsters[index].head == topCheck && monsters[index].body == midCheck && monsters[index].feet == bottomCheck){
+            name_text.setText("You won!! Your Monster is: $name")
         } else {
-            text_view_id.setText(" ")
-          }
             index += 1
+            name_text.setText("")
+          }
         }
     }
 }
